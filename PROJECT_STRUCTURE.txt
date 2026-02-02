@@ -1,0 +1,66 @@
+# Zara Price Monitor - Project Structure
+
+```
+zara-monitor/
+│
+├── 📱 Chrome Extension
+│   └── extension/
+│       ├── manifest.json          # Extension configuration
+│       ├── content.js             # Adds monitor button to Zara pages
+│       ├── popup.html             # Extension popup interface
+│       ├── popup.js               # Extension settings logic
+│       ├── background.js          # Background service worker
+│       ├── styles.css             # Button and notification styles
+│       └── icons/
+│           ├── icon16.png         # Extension icon (small)
+│           ├── icon48.png         # Extension icon (medium)
+│           └── icon128.png        # Extension icon (large)
+│
+├── 🤖 Automated Monitoring
+│   ├── .github/
+│   │   └── workflows/
+│   │       └── monitor.yml        # GitHub Actions daily schedule
+│   ├── monitor.py                 # Main price checking script
+│   └── monitored_products.json    # Your tracked products database
+│
+├── 🌐 Optional API (for syncing across devices)
+│   └── api.py                     # Flask API server
+│
+├── 📚 Documentation
+│   ├── README.md                  # Full documentation
+│   ├── QUICKSTART.md              # Step-by-step setup guide
+│   └── PROJECT_STRUCTURE.txt      # This file
+│
+├── 🧪 Testing & Setup
+│   ├── test_telegram.py           # Test your Telegram setup
+│   ├── create_icons.py            # Icon generation script
+│   └── requirements.txt           # Python dependencies
+│
+└── ⚙️ Configuration
+    └── .gitignore                 # Git ignore rules
+```
+
+## Key Files Explained
+
+### Extension Files
+- **manifest.json**: Tells Chrome what the extension does and what permissions it needs
+- **content.js**: Runs on Zara product pages, adds the monitor button, extracts product info
+- **popup.html/js**: The settings interface when you click the extension icon
+- **styles.css**: Makes the monitor button look nice
+
+### Monitoring System
+- **monitor.py**: The script that runs daily to check prices
+- **monitor.yml**: Tells GitHub Actions when and how to run the monitoring
+- **monitored_products.json**: Stores all products you're tracking with their prices
+
+### Setup & Testing
+- **test_telegram.py**: Run this to verify your Telegram bot works
+- **requirements.txt**: Lists Python packages needed for the monitoring script
+
+## What You Need to Edit
+1. **Nothing in the extension folder** - it works as-is
+2. **GitHub Secrets** - add your TELEGRAM_BOT_TOKEN
+3. **Extension settings** - add your Telegram Chat ID
+
+## What Gets Modified Automatically
+- **monitored_products.json** - updated when you add/remove products and when prices are checked
